@@ -1,0 +1,11 @@
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+<style type="text/css">  
+div{
+  text-align: justify;
+}
+p{font-family:"Computer Modern", Times, serif;font-size:18px;}
+h1 {font-family:"Computer Modern", Times, serif;color:#009999;}
+h2,h3{font-family:"Computer Modern", Times, serif;color:#70DB93;}
+h4,h5,h6{font-family:"Computer Modern", Times, serif;color:#0C5AA6;}
+</style>
+
