@@ -1,13 +1,4 @@
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-<style type="text/css">  
-div{
-  text-align: justify;
-}
-font{
- face="Times New Roman"
- }
-</style>
-
 #OVERFITTING
 
 ###What is overfitting
