@@ -1,6 +1,15 @@
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+<style type="text/css">  
+div{
+  text-align: justify;
+}
+p{font-family:"Computer Modern", Times, serif;font-size:18px;}
+h1 {font-family:"Computer Modern", Times, serif;color:#009999;}
+h2,h3{font-family:"Computer Modern", Times, serif;color:#70DB93;}
+h4,h5,h6{font-family:"Computer Modern", Times, serif;color:#0C5AA6;}
+</style>
 
 #OVERFITTING
-
 ###What is overfitting
 Overfitting literally means "Fitting the data more than is warranted." The main case of overfitting is when you pick the hypothesis with lower $E_{in}$, and it results in higher $E_{out}$ . This means that Ein alone is no longer a good guide for learning. 
 
@@ -112,6 +121,15 @@ but with respect to different constraints:$\|\beta \|_{1}\leq t$ for lasso and $
 ![](./Fig/10.PNG)
 
 ####Validation
+#####Validation set
+`Two goals of validation set:`
+
+* `The primary goal` is to get the best possible hypothesis, so we should out­put $g$, the hypothesis trained on the **en­tire set** $V$.
+* `The secondary goal` is to esti­mate $E_{out}$, which is what validation allows us to do. Based on our discussion of learn­ing curves, $E_{out} (g) \le E_{out} (g^-)$.
+
+
+`Differnence between validation set and test set:`
+
 Regularization attempts to minimize $E_{out}$ by working through the equation and concocting a heuristic term that emulates the penalty term. Validation, on the other hand, cuts to the chase and estimates the out-of-sample error directly. 
 $$E_{out}(g) = E_{in}(g) + \textbf{overfit penalty}\ \  \text{Regularization}$$
 VC bounds this using a complexity error bar for H regularization estimates this through a heuristic complexity penalty for g.
@@ -123,6 +141,57 @@ validation estimates this directly
 >used in making certain choices in the learning process. The minute a set affects
 >the learning process in any way, it is no longer a test set.
 
+`Price of validation set`
+
+There is a price to be paid for setting aside $K$ data points to get this unbiased estimate of $E_{out}$: when we set aside more data for validation, there are fewer training data points and so $g^-$ becomes worse; $E_{out}(g^-)$,and hence the expected validation error, increases (the blue curve).
+
+>**A rule of thumb in practice is to set $K = \frac{N}{5}$ ( set aside 20% of the data for validation).**
+
+<figure class="third">
+    <img src="./Fig/11.PNG" width="250">
+    <img src="./Fig/12.PNG" width="250">
+    <img src="./Fig/13.PNG" width="250">
+</figure>
+
+#####Model selection
+
+This could mean the choice between a linear model and a nonlinear model, the choice of the order of polynomial in a model, the choice of the value of a regularization parameter, or any other choice that affects the learning process.
+
+It is now a simple matter to select the model with lowest validation error. Let $m^*$ be the index of the model which achieves the minimum validation error. So for $H_{m^*}$, $E_{m^*} \le E_{m}$ for $m= 1, ... ,M$. The model $H_{m^*}$ is the model selected based on the validation errors. Note that $E_{m^*}$ is no longer an unbiased estimate of $E_{out} (g_{m^*})$. Since we selected the model with minimum validation error, $E_{m^*}$ will have an optimistic bias. Then we have <img src="./Fig/14.PNG" width="190">.
+
+![](./Fig/15.PNG)
+
+>Model with best $g$ also has best $g$ (leap of faith) We can find model with best $g$ using validation
+
+#####Cross validation
+Validation relies on the following chain of reasoning:<img src="./Fig/16.PNG" width="190">  
 
 
+>Theorem: $E_{cv}$ is an unbiased estimate of $E_{out}(N - 1)$ (the expectation of the model performance, $E[E_{out}]$, over data sets of size $N - 1$). We have <img src="./Fig/18.PNG" width="190">
 
+10-Fold cross validations:
+![](./Fig/20.PNG)
+
+```
+Cross validation for selecting A(lambda):
+1: Define M models by choosing different values for A in the
+   augmented error: (H, A1),H (H, A2), ... , (H, AM)
+2: for each model m = 1, ... , M do
+3:      Use the cross validation module in Figure 4.14 to estimate Ecv(m), the cross validation error for model m.
+4: Select the model m* with minimum Ecv( m*).
+5: Use model (H, Am*) and all the data D to obtain the final hypothesis gm*.Effectively, you have estimated the 
+   optimal A.
+```
+
+<figure class="third">
+    <img src="./Fig/17.PNG" width="250">
+    <img src="./Fig/21.PNG" width="250">
+    <img src="./Fig/19.PNG" width="250">
+</figure>
+
+
+###Conclusion
+
+1. `Noise` (`stochastic` or `deterministic`) affects learning adversely, leading to overfitting.
+2. `Regularization` helps to prevent `overfitting` by constraining the model, reducing the impact of the noise, while still giving us flexibility to fit the data.
+3. `Validation` and `cross validation` are useful techniques for estimating $E_{out}$. One important use of validation is `model selection`, in particular to estimate the `amount of regularization` to use.
