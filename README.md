@@ -10,7 +10,7 @@ Mathmatics fundation:
 Learnig theory:
 
 * Learning problem and Vc dimension (t.b.d.)
-* Linear model (t.b.d.)
+* PAC learing theory (t.b.d)
 * Overfitting (Finished)
 * Three principles of learnig problem (t.b.d.)
 
@@ -21,9 +21,10 @@ First and second order optimization algorithms:
 
 Learning algorithms:
 
+* Linear model (t.b.d.)
 * SVM (t.b.d.)
 * ...
 
 Deep Learning:
 
-...
+......
