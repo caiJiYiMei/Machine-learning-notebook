@@ -24,12 +24,12 @@ $$D_{w}f(\boldsymbol{x})=lim_{t→0}\frac{f(\boldsymbol{x}+t\boldsymbol{w})−f(
 
 $$D_{W}f(\boldsymbol{X})=lim_{t→0}\frac{f(\boldsymbol{X}+t\boldsymbol{W})−f(\boldsymbol{X})}{t}$$
 含义和2)类似。（已经无法想象了）
+
+###[标量$f$对矩阵$X$的导数-Trace derivative](https://zhuanlan.zhihu.com/p/24709748)
 标量f对矩阵X的导数，定义为:
 $$\frac{\partial f}{\partial X} = \left[\frac{\partial f }{\partial X_{ij}}\right]$$
 矩阵导数与微分建立联系：
 >$$df = \sum_{i=1}^m \sum_{j=1}^n \frac{\partial f}{\partial X_{ij}}dX_{ij} = \text{tr}\left(\frac{\partial f}{\partial X}^T dX\right)$$
-
-###[标量$f$对矩阵$X$的导数](https://zhuanlan.zhihu.com/p/24709748)
 ####矩阵运算法则
 * 加减法：$d(X\pm Y) = dX \pm dY$；矩阵乘法：$d(XY) = (dX) Y + X (dY)$ ；转置：$d(X^T) = (dX)^T$；迹：$d\text{tr}(X) = \text{tr}(dX)$。
 * 逆：$dX^{-1} = -X^{-1}(dX) X^{-1}$。此式可在$XX^{-1}=I$两侧求微分来证明。
